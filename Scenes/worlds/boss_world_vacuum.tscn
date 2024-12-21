@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://thp7ne5fpl5m"]
+
+[node name="boss_world_vacuum" type="Node2D"]
+
+[node name="boss_world_man" type="Node2D" parent="."]
+
+[node name="boss_world_opening_cutscene" type="Node2D" parent="."]

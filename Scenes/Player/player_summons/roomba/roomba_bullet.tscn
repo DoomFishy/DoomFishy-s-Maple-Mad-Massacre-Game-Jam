@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cci3ihg42vu7l"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player_summons/roomba/roomba_bullet.gd" id="1_8uf6a"]
+[ext_resource type="Texture2D" uid="uid://cp233vqry26gc" path="res://assets/Boss-Sprites/Vacuum_Boss/friendly_roombA.png" id="1_dssw2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mit3a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_csncd"]
+
+[node name="roomba_bullet" type="CharacterBody2D"]
+script = ExtResource("1_8uf6a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dssw2")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, 1)
+scale = Vector2(1.67, 1)
+shape = SubResource("CircleShape2D_mit3a")
+
+[node name="hit_wall_check" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_wall_check"]
+position = Vector2(0, 1)
+scale = Vector2(1.82, 1)
+shape = SubResource("CircleShape2D_csncd")
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="hit_wall_check" to="." method="_on_hit_wall_check_body_entered"]

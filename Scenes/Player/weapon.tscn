@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsvpi2qv2pxvs"]
+
+[ext_resource type="Script" path="res://Scenes/Player/attack_states/weapon.gd" id="1_tmcd6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxv8t"]
+size = Vector2(36, 42.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7co8"]
+size = Vector2(54.5, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nc1au"]
+size = Vector2(54.5, 27.5)
+
+[node name="weapon" type="Node2D"]
+script = ExtResource("1_tmcd6")
+
+[node name="hurtbox_side_area" type="Area2D" parent="."]
+
+[node name="hurtbox_side" type="CollisionShape2D" parent="hurtbox_side_area"]
+position = Vector2(18, -6.75)
+shape = SubResource("RectangleShape2D_nxv8t")
+disabled = true
+
+[node name="hurtbox_up_area" type="Area2D" parent="."]
+
+[node name="hurtbox_up" type="CollisionShape2D" parent="hurtbox_up_area"]
+position = Vector2(0.75, -19.5)
+shape = SubResource("RectangleShape2D_t7co8")
+disabled = true
+
+[node name="hurtbox_down_area" type="Area2D" parent="."]
+
+[node name="hurtbox_down" type="CollisionShape2D" parent="hurtbox_down_area"]
+position = Vector2(2, 16.75)
+shape = SubResource("RectangleShape2D_nc1au")
+disabled = true
+
+[connection signal="area_entered" from="hurtbox_side_area" to="." method="_on_hurtbox_side_area_area_entered"]

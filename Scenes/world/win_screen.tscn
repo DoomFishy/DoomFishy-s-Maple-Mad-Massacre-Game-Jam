@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://blw267alm6g6j"]
+
+[ext_resource type="FontFile" uid="uid://de0dgh470m2s5" path="res://assets/fonts/superstar_memesbruh03.ttf" id="1_350wk"]
+[ext_resource type="Texture2D" uid="uid://ucr4hpvl8kki" path="res://assets/20230916_143508.png" id="1_jkt0f"]
+[ext_resource type="Texture2D" uid="uid://ci4tynntkh8yu" path="res://assets/20231226_191513.jpg" id="2_lmt0h"]
+[ext_resource type="Texture2D" uid="uid://blvgi77kk6cts" path="res://assets/IMG_1540.jpg" id="3_k5yxr"]
+
+[node name="win_screen" type="Node2D"]
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(180, 328)
+scale = Vector2(0.390523, 0.393751)
+texture = ExtResource("1_jkt0f")
+region_enabled = true
+region_rect = Rect2(401.005, 183.855, 1530.39, 1613.94)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(516, 489)
+scale = Vector2(0.177, 0.145333)
+texture = ExtResource("2_lmt0h")
+region_enabled = true
+region_rect = Rect2(1048.3, 894.797, 2867.11, 2128.08)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(975, 451)
+scale = Vector2(0.169733, 0.173124)
+texture = ExtResource("3_k5yxr")
+region_enabled = true
+region_rect = Rect2(171.483, 278.683, 2870.91, 2426.59)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 476.0
+offset_top = 92.0
+offset_right = 1145.0
+offset_bottom = 195.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_350wk")
+theme_override_font_sizes/font_size = 100
+text = "You did it WOOO"
