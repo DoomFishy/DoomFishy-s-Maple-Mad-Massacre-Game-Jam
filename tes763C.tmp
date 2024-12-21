@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://l37spxdtlms6"]
+
+[ext_resource type="Texture2D" uid="uid://jpfd465iyhrm" path="res://rogue_assets/TX Tileset Grass.png" id="1_byo8n"]
+[ext_resource type="PackedScene" uid="uid://bxbj4u1ob8d45" path="res://Scenes/dummy/dummy.tscn" id="2_thnm2"]
+[ext_resource type="PackedScene" uid="uid://r2r1jjygti66" path="res://Scenes/Components/hurt_area.tscn" id="3_b0gn3"]
+[ext_resource type="PackedScene" uid="uid://dq476iwrqdw2i" path="res://Scenes/Player/player.tscn" id="4_470vk"]
+[ext_resource type="PackedScene" uid="uid://df7l5qncw2xgh" path="res://Scenes/Bosses/Vacuum_Boss/vacuum_boss.tscn" id="5_3gwih"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnyde"]
+size = Vector2(31, 659)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq7as"]
+size = Vector2(1158.5, 20.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yncd"]
+size = Vector2(24.75, 646.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spndg"]
+size = Vector2(1194, 29)
+
+[node name="test_world" type="Node2D"]
+y_sort_enabled = true
+
+[node name="TxTilesetGrass" type="Sprite2D" parent="."]
+visibility_layer = 4
+z_index = -2
+position = Vector2(1117, 695)
+scale = Vector2(9.5, 6.25586)
+texture = ExtResource("1_byo8n")
+
+[node name="player" parent="." instance=ExtResource("4_470vk")]
+position = Vector2(489, 387)
+scale = Vector2(3, 3)
+
+[node name="dummy" parent="." instance=ExtResource("2_thnm2")]
+visible = false
+position = Vector2(717, 340)
+scale = Vector2(3, 3)
+
+[node name="dummy2" parent="." instance=ExtResource("2_thnm2")]
+visible = false
+position = Vector2(629, 239)
+scale = Vector2(3, 3)
+
+[node name="dummy3" parent="." instance=ExtResource("2_thnm2")]
+visible = false
+position = Vector2(674, 479)
+scale = Vector2(3, 3)
+
+[node name="dummy4" parent="." instance=ExtResource("2_thnm2")]
+visible = false
+position = Vector2(852, 441)
+scale = Vector2(3, 3)
+
+[node name="dummy5" parent="." instance=ExtResource("2_thnm2")]
+visible = false
+position = Vector2(844, 244)
+scale = Vector2(3, 3)
+
+[node name="hurt area" parent="." instance=ExtResource("3_b0gn3")]
+position = Vector2(-283, 299)
+scale = Vector2(3, 3)
+
+[node name="Vacuum_Boss" parent="." instance=ExtResource("5_3gwih")]
+position = Vector2(609, 229)
+scale = Vector2(7, 7)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-14, 318)
+shape = SubResource("RectangleShape2D_wnyde")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(582, 659)
+shape = SubResource("RectangleShape2D_tq7as")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1167, 322)
+shape = SubResource("RectangleShape2D_0yncd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(578, -18.5)
+shape = SubResource("RectangleShape2D_spndg")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbmxxrfq27t3q"]
+
+[sub_resource type="Curve" id="Curve_bpftb"]
+_data = [Vector2(0.0274725, 0.684211), 0.0, 0.0, 0, 0, Vector2(0.340659, 0.105263), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+rotation = -0.841249
+emitting = false
+amount = 6
+lifetime = 0.4
+one_shot = true
+preprocess = 0.03
+explosiveness = 0.85
+randomness = 0.64
+spread = 34.09
+gravity = Vector2(0, 0)
+initial_velocity_min = 42.0
+initial_velocity_max = 313.13
+angle_max = 80.0
+scale_amount_min = 15.0
+scale_amount_max = 25.0
+scale_amount_curve = SubResource("Curve_bpftb")

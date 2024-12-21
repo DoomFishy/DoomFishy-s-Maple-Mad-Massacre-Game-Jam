@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://l37spxdtlms6"]
+
+[ext_resource type="Texture2D" uid="uid://c0bd0wnjmylas" path="res://assets/carpet.png" id="3_oehfm"]
+[ext_resource type="PackedScene" uid="uid://d2yym0aifscvq" path="res://Scenes/world/boss_bobby_world.tscn" id="3_pq8nl"]
+[ext_resource type="PackedScene" uid="uid://dq476iwrqdw2i" path="res://Scenes/Player/player.tscn" id="4_470vk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnyde"]
+size = Vector2(31, 659)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq7as"]
+size = Vector2(1158.5, 20.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yncd"]
+size = Vector2(24.75, 646.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spndg"]
+size = Vector2(1194, 29)
+
+[node name="test_world" type="Node2D"]
+y_sort_enabled = true
+
+[node name="player" parent="." instance=ExtResource("4_470vk")]
+y_sort_enabled = true
+position = Vector2(-1, 172)
+scale = Vector2(2, 2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["environment"]]
+position = Vector2(-576, -317)
+collision_layer = 4
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-14, 318)
+shape = SubResource("RectangleShape2D_wnyde")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(582, 659)
+shape = SubResource("RectangleShape2D_tq7as")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1167, 322)
+shape = SubResource("RectangleShape2D_0yncd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(578, -18.5)
+shape = SubResource("RectangleShape2D_spndg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.12549, 0.12549, 0.12549, 1)
+z_index = -3
+position = Vector2(-8, -1.99998)
+scale = Vector2(50.9375, 44.2344)
+texture = ExtResource("3_oehfm")
+
+[node name="Boss_bobby_world" parent="." instance=ExtResource("3_pq8nl")]
+position = Vector2(2, 2)

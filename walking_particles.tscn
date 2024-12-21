@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ovcc7l7tkhpk"]
+
+[sub_resource type="Curve" id="Curve_me43h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_lnqfc"]
+offsets = PackedFloat32Array(0, 0.655629)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="walking_particles" type="CPUParticles2D"]
+amount = 4
+lifetime = 1.25
+randomness = 1.0
+spread = 10.91
+gravity = Vector2(0, 0)
+initial_velocity_min = 71.71
+initial_velocity_max = 71.71
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_me43h")
+color_ramp = SubResource("Gradient_lnqfc")
