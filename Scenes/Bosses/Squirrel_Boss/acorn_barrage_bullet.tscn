@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://gduukvwo722l"]
+
+[ext_resource type="Script" path="res://Scenes/Bosses/Squirrel_Boss/acorn_barrage_bullet.gd" id="1_n7jjo"]
+[ext_resource type="Texture2D" uid="uid://cj03qe5wi4m" path="res://rogue_assets/ball-sheet-sheet.png" id="2_5lgo3"]
+[ext_resource type="Texture2D" uid="uid://di805a8mgc8rg" path="res://assets/Boss-Sprites/Squirrel_Boss/acorn.png" id="3_8cwvw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8hrx"]
+size = Vector2(88, 23)
+
+[sub_resource type="Animation" id="Animation_6sxmx"]
+resource_name = "fall"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, -1001.85), Vector2(1, -1001.85), Vector2(1, -15.645)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hurtbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("shadow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shake"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8km6"]
+_data = {
+"fall": SubResource("Animation_6sxmx")
+}
+
+[node name="acorn_barrage_bullet" type="CharacterBody2D"]
+script = ExtResource("1_n7jjo")
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_j8hrx")
+disabled = true
+
+[node name="shadow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.329412)
+z_index = -1
+scale = Vector2(3, 1.078)
+texture = ExtResource("2_5lgo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -563.537)
+scale = Vector2(3.97501, 3.97501)
+texture = ExtResource("3_8cwvw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p8km6")
+}
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

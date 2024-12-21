@@ -1,0 +1,109 @@
+[gd_scene load_steps=27 format=3 uid="uid://df7l5qncw2xgh"]
+
+[ext_resource type="Texture2D" uid="uid://cc0ugywqu1lxx" path="res://assets/Boss-Sprites/Vacuum_Boss/boss-vacuum.png" id="1_cxtbh"]
+[ext_resource type="Script" path="res://Scenes/Bosses/Vacuum_Boss/vacuum_boss.gd" id="1_e6p7w"]
+[ext_resource type="Texture2D" uid="uid://cj03qe5wi4m" path="res://rogue_assets/ball-sheet-sheet.png" id="2_mv2fb"]
+[ext_resource type="Script" path="res://Scripts/States/State Machine.gd" id="3_cd634"]
+[ext_resource type="Shader" path="res://white_flash_sprite.gdshader" id="4_141xn"]
+[ext_resource type="Script" path="res://Scenes/Player/components/move_component.gd" id="6_e1f0o"]
+[ext_resource type="Script" path="res://Scenes/Bosses/Vacuum_Boss/States/idle_state.gd" id="6_vcrum"]
+[ext_resource type="Script" path="res://Scenes/Bosses/Vacuum_Boss/States/dash_state.gd" id="7_3ibtu"]
+[ext_resource type="PackedScene" uid="uid://bowvrvbt7us8p" path="res://Scenes/Components/health_component.tscn" id="7_ig74r"]
+[ext_resource type="Script" path="res://Scenes/Bosses/Vacuum_Boss/States/suck_state.gd" id="8_peywx"]
+[ext_resource type="PackedScene" uid="uid://cbe5ubp1ochyn" path="res://Scenes/Components/hitbox_component.tscn" id="8_v70nj"]
+[ext_resource type="Script" path="res://Scenes/Bosses/Vacuum_Boss/States/summon_state.gd" id="9_cafyh"]
+[ext_resource type="Script" path="res://Scenes/Bosses/Vacuum_Boss/States/dust_state.gd" id="10_b6re1"]
+[ext_resource type="Script" path="res://Scenes/Bosses/Vacuum_Boss/States/stomp_state.gd" id="11_4yc8h"]
+[ext_resource type="Script" path="res://Scenes/Bosses/Vacuum_Boss/States/dead_state.gd" id="12_qpy2j"]
+[ext_resource type="PackedScene" uid="uid://bbnsgdhlwu3e5" path="res://Scenes/GUI/Enemy_Health_Bar/healthbar.tscn" id="16_b6vta"]
+
+[sub_resource type="Animation" id="Animation_q3hqp"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hit"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.403922)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qnwek"]
+_data = {
+"dead": SubResource("Animation_q3hqp")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j18ti"]
+resource_local_to_scene = true
+shader = ExtResource("4_141xn")
+shader_parameter/active = false
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4542"]
+atlas = ExtResource("1_cxtbh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pvhx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4542")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngre8"]
+size = Vector2(12, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlvu4"]
+size = Vector2(16, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gdra"]
+size = Vector2(37, 39)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nl2qo"]
+radius = 96.0469
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0elc"]
+radius = 18.0
+
+[node name="Vacuum_Boss" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_e6p7w")
+
+[node name="Ball-sheet-sheet" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.403922)
+visibility_layer = 2
+z_index = -1
+position = Vector2(0, 

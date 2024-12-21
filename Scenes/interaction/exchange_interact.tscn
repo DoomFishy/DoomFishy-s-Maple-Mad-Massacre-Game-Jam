@@ -1,0 +1,221 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4pwq6ahe0edd"]
+
+[ext_resource type="Texture2D" uid="uid://dn4cfogbrlbts" path="res://assets/bone.png" id="1_wkacn"]
+[ext_resource type="PackedScene" uid="uid://smt74fr7go76" path="res://Scenes/interaction/interaction_area.tscn" id="2_e5dub"]
+[ext_resource type="Script" path="res://Scenes/interaction/exchange_interact.gd" id="2_pco5d"]
+[ext_resource type="Texture2D" uid="uid://cut8p4h4kofdq" path="res://assets/menu.png" id="4_6e44c"]
+[ext_resource type="FontFile" uid="uid://de0dgh470m2s5" path="res://assets/fonts/superstar_memesbruh03.ttf" id="5_o3x4a"]
+[ext_resource type="Texture2D" uid="uid://cp233vqry26gc" path="res://assets/Boss-Sprites/Vacuum_Boss/friendly_roombA.png" id="6_7kb4q"]
+[ext_resource type="Texture2D" uid="uid://bfro7q2njvloh" path="res://assets/dogo_sprite_sheet.png" id="7_4s8ei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7w4f"]
+size = Vector2(76.5, 61)
+
+[sub_resource type="Animation" id="Animation_nx48c"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.9, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"change_scene"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3otp8"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ar5xn"]
+_data = {
+"fade": SubResource("Animation_nx48c"),
+"float": SubResource("Animation_3otp8")
+}
+
+[node name="exchange_interact" type="CharacterBody2D"]
+script = ExtResource("2_pco5d")
+
+[node name="interaction_area" parent="." instance=ExtResource("2_e5dub")]
+action_name = "Exchange Abilities"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
+shape = SubResource("RectangleShape2D_m7w4f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wkacn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "float"
+libraries = {
+"": SubResource("AnimationLibrary_ar5xn")
+}
+
+[node name="info_roomba" type="Node2D" parent="."]
+visible = false
+
+[node name="information_ability" type="Sprite2D" parent="info_roomba"]
+position = Vector2(82, -52)
+scale = Vector2(3.53125, 1.07812)
+texture = ExtResource("4_6e44c")
+
+[node name="Label" type="Label" parent="info_roomba"]
+offset_left = 21.0
+offset_top = -80.0
+offset_right = 238.0
+offset_bottom = -42.0
+theme_override_fonts/font = ExtResource("5_o3x4a")
+theme_override_font_sizes/font_size = 16
+text = "Press ability \"Q\" 
+to shoot roomba"
+
+[node name="roombas" type="Node2D" parent="info_roomba"]
+
+[node name="roomba" type="Sprite2D" parent="info_roomba/roombas"]
+position = Vector2(111, -32)
+scale = Vector2(0.71875, 0.71875)
+texture = ExtResource("6_7kb4q")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="roomba2" type="Sprite2D" parent="info_roomba/roombas"]
+position = Vector2(124, -29)
+scale = Vector2(0.546875, 0.546875)
+texture = ExtResource("6_7kb4q")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="maple" type="Sprite2D" parent="info_roomba"]
+position = Vector2(44, -32)
+texture = ExtResource("7_4s8ei")
+region_enabled = true
+region_rect = Rect2(462.813, 85.2289, 29.1833, 31.667)
+
+[node name="info_bobby" type="Node2D" parent="."]
+visible = false
+
+[node name="information_ability" type="Sprite2D" parent="info_bobby"]
+position = Vector2(82, -52)
+scale = Vector2(3.53125, 1.07812)
+texture = ExtResource("4_6e44c")
+
+[node name="Label" type="Label" parent="info_bobby"]
+offset_left = 21.0
+offset_top = -80.0
+offset_right = 238.0
+offset_bottom = -42.0
+theme_override_fonts/font = ExtResource("5_o3x4a")
+theme_override_font_sizes/font_size = 16
+text = "Press Q to summon 
+your ancestors"
+
+[node name="maple" type="Sprite2D" parent="info_bobby"]
+position = Vector2(44, -32)
+texture = ExtResource("7_4s8ei")
+region_enabled = true
+region_rect = Rect2(462.813, 85.2289, 29.1833, 31.667)
+
+[node name="info_squirrel" type="Node2D" parent="."]
+visible = false
+
+[node name="information_ability" type="Sprite2D" parent="info_squirrel"]
+position = Vector2(82, -52)
+scale = Vector2(3.53125, 1.07812)
+texture = ExtResource("4_6e44c")
+
+[node name="Label" type="Label" parent="info_squirrel"]
+offset_left = 21.0
+offset_top = -80.0
+offset_right = 238.0
+offset_bottom = -42.0
+theme_override_fonts/font = ExtResource("5_o3x4a")
+theme_override_font_sizes/font_size = 16
+text = "Press ability \"Q\" 
+ to Shoot Lasers 
+On mouse pos"
+
+[node name="maple" type="Sprite2D" parent="info_squirrel"]
+position = Vector2(128, -32)
+texture = ExtResource("7_4s8ei")
+region_enabled = true
+region_rect = Rect2(462.813, 85.2289, 29.1833, 31.667)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1167.0
+offset_bottom = 654.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="area_entered" from="interaction_area" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="interaction_area" to="." method="_on_interaction_area_area_exited"]

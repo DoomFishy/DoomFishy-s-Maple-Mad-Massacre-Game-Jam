@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgn1vws1x6sp4"]
+
+[sub_resource type="Curve" id="Curve_ogqt2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.818681, 0.442105), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ilf7o"]
+offsets = PackedFloat32Array(0, 0.403974, 1)
+colors = PackedColorArray(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="roomba_explosion" type="CPUParticles2D"]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_ogqt2")
+color_ramp = SubResource("Gradient_ilf7o")

@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://bp6jwsfk43cdk"]
+
+[ext_resource type="Script" path="res://Scenes/Main/Main_Menu.gd" id="1_rmgca"]
+[ext_resource type="Texture2D" uid="uid://dn4cfogbrlbts" path="res://assets/bone.png" id="2_4hdqu"]
+[ext_resource type="Texture2D" uid="uid://bmgxuxdof7prq" path="res://assets/Boss-Sprites/Squirrel_Boss/Squirrel Sprite Sheet.png" id="2_m2niy"]
+[ext_resource type="AudioStream" uid="uid://bxc7tp0kxrq2q" path="res://assets/sfx/Unforgiven_Theme.wav" id="2_vk82u"]
+[ext_resource type="Texture2D" uid="uid://4g7svmn76fe5" path="res://assets/Boss-Sprites/Bobby_Boss/bobby_sprite_sheet.png" id="3_urktk"]
+[ext_resource type="Texture2D" uid="uid://bfro7q2njvloh" path="res://assets/dogo_sprite_sheet.png" id="5_5hkft"]
+[ext_resource type="Texture2D" uid="uid://c14moacptpkvx" path="res://assets/Boss-Sprites/Vacuum_Boss/boss-vacuum-sheet.png" id="5_h8quo"]
+[ext_resource type="FontFile" uid="uid://b34grmwv2rxnt" path="res://assets/fonts/superstarorig_memesbruh03.ttf" id="5_tww7t"]
+[ext_resource type="Texture2D" uid="uid://di805a8mgc8rg" path="res://assets/Boss-Sprites/Squirrel_Boss/acorn.png" id="6_st1ma"]
+[ext_resource type="Texture2D" uid="uid://b3k1kwghngh1k" path="res://assets/Boss-Sprites/Vacuum_Boss/dust_ball_projectile.png" id="7_atco8"]
+
+[node name="Main_Menu" type="Node2D"]
+script = ExtResource("1_rmgca")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1168.0
+offset_bottom = 654.0
+color = Color(0.619608, 0.52549, 0.784314, 1)
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(368, 300)
+scale = Vector2(12.5922, 12.5922)
+texture = ExtResource("2_4hdqu")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(-4.93535, 4.08027, 71.1238, 40.6421)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(422.574, 258.94)
+scale = Vector2(12.4356, 12.4356)
+texture = ExtResource("2_m2niy")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(4.77117, 175.103, 21.7847, 19.8695)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(678.574, 278.94)
+scale = Vector2(7.73421, 7.73421)
+texture = ExtResource("3_urktk")
+region_enabled = true
+region_rect = Rect2(272.302, 22.0122, 33.1567, 31.6146)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(553, 239)
+scale = Vector2(6.8153, 6.8153)
+texture = ExtResource("5_h8quo")
+region_enabled = true
+region_rect = Rect2(4.04401, -2.66143, 25.8065, 34.2331)
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(112.016, 189.648)
+scale = Vector2(6.33153, 6.33153)
+texture = ExtResource("6_st1ma")
+region_enabled = true
+region_rect = Rect2(-1.30862, -1.90231, 18.6276, 21.45)
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(173, 303)
+scale = Vector2(4.9982, 4.9982)
+texture = ExtResource("6_st1ma")
+region_enabled = true
+region_rect = Rect2(-1.30862, -1.90231, 18.6276, 21.45)
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(1032.85, 176.497)
+scale = Vector2(5.87688, 5.87688)
+texture = ExtResource("7_atco8")
+region_enabled = true
+region_rect = Rect2(0.599113, 0.170269, 30.8098, 32.3898)
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+position = Vector2(976, 280)
+scale = Vector2(4.76805, 4.76805)
+texture = ExtResource("7_atco8")
+region_enabled = true
+region_rect = Rect2(5.86574, 5.17356, 21.8565, 21.8565)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(525, 423)
+scale = Vector2(6.29793, 6.29793)
+texture = ExtResource("5_5hkft")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(470.72, 83.6474, 26.287, 29.4415)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 325.0
+offset_top = 499.0
+offset_right = 803.0
+offset_bottom = 648.0
+theme_override_fonts/font = ExtResource("5_tww7t")
+theme_override_font_sizes/font_size = 82
+text = "play"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_vk82u")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 137.0
+offset_top = -14.0
+offset_right = 1072.0
+offset_bottom = 123.0
+theme_override_fonts/font = ExtResource("5_tww7t")
+theme_override_font_sizes/font_size = 100
+text = "Maple's mad massacre"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

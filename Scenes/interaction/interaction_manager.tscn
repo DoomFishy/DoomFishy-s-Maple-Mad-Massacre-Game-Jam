@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvdvkogj57tag"]
+
+[ext_resource type="Script" path="res://Scenes/interaction/interaction_manager.gd" id="1_3mkeq"]
+[ext_resource type="FontFile" uid="uid://de0dgh470m2s5" path="res://assets/fonts/superstar_memesbruh03.ttf" id="1_lrxjm"]
+
+[node name="InteractionManager" type="Node2D"]
+script = ExtResource("1_3mkeq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -52.0
+offset_right = 50.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_lrxjm")
+text = "[E] TO INTERACT"

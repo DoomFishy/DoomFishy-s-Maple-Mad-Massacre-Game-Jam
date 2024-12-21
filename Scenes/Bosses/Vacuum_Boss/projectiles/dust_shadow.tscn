@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddn7adppns4kq"]
+
+[ext_resource type="Texture2D" uid="uid://cj03qe5wi4m" path="res://rogue_assets/ball-sheet-sheet.png" id="1_714yv"]
+[ext_resource type="Script" path="res://Scenes/Bosses/Vacuum_Boss/projectiles/dust_shadow.gd" id="2_d8gys"]
+
+[sub_resource type="Curve" id="Curve_5wkff"]
+_data = [Vector2(0.00561798, 1), 0.0, 0.0, 0, 0, Vector2(0.820225, 0.505494), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ru58q"]
+offsets = PackedFloat32Array(0, 0.486667, 1)
+colors = PackedColorArray(0.151276, 0.151276, 0.151276, 1, 0.489622, 0.489622, 0.489622, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yek4w"]
+size = Vector2(31.6667, 19.5016)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wcgs"]
+size = Vector2(29.3333, 61.7161)
+
+[node name="dust_shadow" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.403922)
+z_index = -1
+position = Vector2(0, 0.75)
+scale = Vector2(3, 1.078)
+texture = ExtResource("1_714yv")
+script = ExtResource("2_d8gys")
+
+[node name="dust_explosion" type="CPUParticles2D" parent="."]
+position = Vector2(0, -36.8738)
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.75
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 280)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_5wkff")
+color_ramp = SubResource("Gradient_ru58q")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.166668, -9.49779)
+shape = SubResource("RectangleShape2D_yek4w")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 26
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.666667, -20.8581)
+shape = SubResource("RectangleShape2D_7wcgs")
+disabled = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
